@@ -12,7 +12,6 @@ import java.util.List;
 @RestController
 public class SecretController {
 
-
     private SecretRepository secretRepository;
 
     @Autowired
@@ -21,6 +20,7 @@ public class SecretController {
     }
 
     @GetMapping("/secrets")
+    @PreAuthorize("hasRole('BASIC')")
     public List<Secret> allSecrets() {
         return secretRepository.findAll();
     }
