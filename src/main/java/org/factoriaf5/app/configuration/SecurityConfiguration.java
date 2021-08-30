@@ -14,28 +14,25 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
-    private final AuthEntryPoint authEntryPoint;
 
     @Autowired
     public SecurityConfiguration(UserDetailsService userDetailsService, AuthEntryPoint authEntryPoint) {
         this.userDetailsService = userDetailsService;
-        this.authEntryPoint = authEntryPoint;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        //completar
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/books").permitAll()
+                // completar
                 .anyRequest().authenticated()
                 .and().httpBasic();
     }

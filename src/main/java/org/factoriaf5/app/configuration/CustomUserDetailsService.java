@@ -20,9 +20,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        //User user = new User("usuario_básico", "password", "ROLE_NONE");
-                User user = userRepository.findByUsername(username)
-                        .orElseThrow(() -> new UsernameNotFoundException("Unable to find user: " + username));
+        User user = new User("usuario_básico", "password", "ROLE_NONE");
+
+        // En lugar de generar el mismo usuario siempre, podemos buscar el usuario en la base de datos:
+        // User user = userRepository.findByUsername(username)
+        //  .orElseThrow(() -> new UsernameNotFoundException("Unable to find user: " + username));
 
 
         return CustomUserDetails.buildFrom(user);

@@ -3,7 +3,6 @@ package org.factoriaf5.app.controllers;
 import org.factoriaf5.app.models.Secret;
 import org.factoriaf5.app.repositories.SecretRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +19,6 @@ public class SecretController {
     }
 
     @GetMapping("/secrets")
-    @PreAuthorize("hasRole('BASIC')")
     public List<Secret> allSecrets() {
         return secretRepository.findAll();
     }
